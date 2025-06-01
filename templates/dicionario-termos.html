@@ -1,0 +1,96 @@
+{% extends "modelo.html" %}
+{% block conteudo %}
+
+    <div class="container py-5">
+  <h1 class="text-center mb-5">📘 Dicionário de Termos - Python</h1>
+
+  <div class="row g-4">
+
+    <!-- a. Visualizar termos -->
+    <div class="col-12">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h5 class="card-title">📄 Todos os termos cadastrados</h5>
+          {% if termos %}
+            <ul class="list-group">
+              {% for termo, definicao in termos.items() %}
+                <li class="list-group-item">
+                  <strong>{{ termo }}:</strong> {{ definicao }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">Nenhum termo cadastrado ainda.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- b. Adicionar novo termo -->
+    <div class="col-md-6">
+      <div class="card border-success">
+        <div class="card-body">
+          <h5 class="card-title">➕ Adicionar Novo Termo</h5>
+          <form method="POST" action="/adicionar">
+            <div class="mb-3">
+              <label for="termo" class="form-label">Termo:</label>
+              <input type="text" class="form-control" id="termo" name="termo" required>
+            </div>
+            <div class="mb-3">
+              <label for="definicao" class="form-label">Definição:</label>
+              <textarea class="form-control" id="definicao" name="definicao" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Adicionar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- c. Alterar definição de termo -->
+    <div class="col-md-6">
+      <div class="card border-warning">
+        <div class="card-body">
+          <h5 class="card-title">✏️ Alterar Definição</h5>
+          <form method="POST" action="/alterar">
+            <div class="mb-3">
+              <label for="termo_alterar" class="form-label">Termo a Alterar:</label>
+              <select class="form-select" id="termo_alterar" name="termo" required>
+                {% for termo in termos %}
+                  <option value="{{ termo }}">{{ termo }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="nova_definicao" class="form-label">Nova Definição:</label>
+              <textarea class="form-control" id="nova_definicao" name="definicao" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Alterar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- d. Deletar termo -->
+    <div class="col-md-6">
+      <div class="card border-danger">
+        <div class="card-body">
+          <h5 class="card-title">🗑️ Deletar Termo</h5>
+          <form method="POST" action="/deletar">
+            <div class="mb-3">
+              <label for="termo_deletar" class="form-label">Selecione o termo:</label>
+              <select class="form-select" id="termo_deletar" name="termo" required>
+                {% for termo in termos %}
+                  <option value="{{ termo }}">{{ termo }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn btn-danger">Deletar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

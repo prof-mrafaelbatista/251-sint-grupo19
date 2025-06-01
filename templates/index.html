@@ -1,0 +1,138 @@
+{% extends "modelo.html" %}
+{% block conteudo %}
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Fundamentos da Programação em Python</h1>
+
+        <div class="accordion" id="fundamentosAccordion">
+
+            <!-- Estruturas de Seleção -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSelecao">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSelecao">
+                        a. Estruturas de Seleção
+                    </button>
+                </h2>
+                <div id="collapseSelecao" class="accordion-collapse collapse show" data-bs-parent="#fundamentosAccordion">
+                    <div class="accordion-body">
+                        <p><strong>Conceito:</strong> Permite que o programa tome decisões com base em condições usando <code>if</code>, <code>elif</code> e <code>else</code>.</p>
+                        <p><strong>Exemplo:</strong></p>
+                        <pre><code class="language-python"># Verifica se o usuário pode dirigir
+idade = int(input("Informe sua idade: "))
+
+if idade >= 18:
+    print("Você pode tirar a carteira de motorista!")
+else:
+    print("Você ainda não pode tirar a carteira.")</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estruturas de Repetição -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingRepeticao">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRepeticao">
+                        b. Estruturas de Repetição
+                    </button>
+                </h2>
+                <div id="collapseRepeticao" class="accordion-collapse collapse" data-bs-parent="#fundamentosAccordion">
+                    <div class="accordion-body">
+                        <p><strong>Conceito:</strong> Executa um bloco de código repetidamente com <code>for</code> e <code>while</code>.</p>
+                        <pre><code class="language-python"># Imprime os números pares de 1 a 10
+print("Números pares de 1 a 10:")
+for numero in range(1, 11):
+    if numero % 2 == 0:
+        print(numero)
+
+# Repetição até o usuário digitar "sair"
+comando = ""
+while comando != "sair":
+    comando = input("Digite um comando (ou 'sair' para encerrar): ")
+    print(f"Você digitou: {comando}")</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vetores e Matrizes -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingVetores">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVetores">
+                        c. Vetores e Matrizes
+                    </button>
+                </h2>
+                <div id="collapseVetores" class="accordion-collapse collapse" data-bs-parent="#fundamentosAccordion">
+                    <div class="accordion-body">
+                        <p><strong>Conceito:</strong> Listas unidimensionais e bidimensionais usadas para armazenar dados.</p>
+                        <pre><code class="language-python"># Lista de frutas
+frutas = ["maçã", "banana", "laranja"]
+print("Primeira fruta da lista:", frutas[0])
+
+# Matriz de preços
+tabela_precos = [
+    [1, 2.50],
+    [2, 3.00],
+    [3, 4.25]
+]
+print("Preço do produto com ID 2:", tabela_precos[1][1])</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Funções e Procedimentos -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFuncoes">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFuncoes">
+                        d. Funções e Procedimentos
+                    </button>
+                </h2>
+                <div id="collapseFuncoes" class="accordion-collapse collapse" data-bs-parent="#fundamentosAccordion">
+                    <div class="accordion-body">
+                        <p><strong>Conceito:</strong> Funções retornam valores. Procedimentos apenas executam ações.</p>
+                        <pre><code class="language-python"># Função com retorno
+def aplicar_desconto(preco, percentual):
+    return preco - (preco * percentual / 100)
+
+# Procedimento (sem retorno)
+def exibir_boas_vindas(nome):
+    print(f"Bem-vindo(a), {nome}!")
+
+preco_final = aplicar_desconto(100, 10)
+print(f"Preço com desconto: R${preco_final:.2f}")
+exibir_boas_vindas("Lucas")</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tratamentos de Exceção -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingExcecao">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExcecao">
+                        e. Tratamentos de Exceção
+                    </button>
+                </h2>
+                <div id="collapseExcecao" class="accordion-collapse collapse" data-bs-parent="#fundamentosAccordion">
+                    <div class="accordion-body">
+                        <p><strong>Conceito:</strong> Permite capturar erros e evitar falhas no programa.</p>
+                        <pre><code class="language-python">try:
+    numero1 = float(input("Digite o numerador: "))
+    numero2 = float(input("Digite o denominador: "))
+    resultado = numero1 / numero2
+    print(f"Resultado da divisão: {resultado:.2f}")
+except ZeroDivisionError:
+    print("Erro: não é possível dividir por zero.")
+except ValueError:
+    print("Erro: entrada inválida. Digite números válidos.")
+finally:
+    print("Operação finalizada.")</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Highlight.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+{% endblock %}
